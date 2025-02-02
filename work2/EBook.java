@@ -1,6 +1,4 @@
-// EBook.java
 package work2;
-
 import java.time.LocalDate;
 
 public class EBook extends Paper {

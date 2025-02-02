@@ -1,7 +1,6 @@
 package work2;
 import java.util.ArrayList;
 
-// User.java
 public class User {
     int userID;
     String name;

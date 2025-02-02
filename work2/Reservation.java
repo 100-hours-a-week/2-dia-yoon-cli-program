@@ -1,6 +1,4 @@
 package work2;
-
-// Reservation.java
 import java.util.Date;
 
 public class Reservation {
