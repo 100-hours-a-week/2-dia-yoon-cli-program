@@ -20,18 +20,6 @@ public class Paper extends Book {
         this.bookID = bookID;
     }
 
-
-    public void borrow(int userID) {
-        if (!isBorrowed) {
-            isBorrowed = true;
-            dueDate = LocalDate.now().plusWeeks(1);
-            System.out.println(title + " borrowed by User ID: " + userID);
-            System.out.println("Due Date: " + LocalDate.now() + " ~ " + dueDate);
-        } else {
-            System.out.println(title + " is already borrowed.");
-        }
-    }
-
     @Override
     public void getDetails() {
         System.out.println("Book ID: " + bookID + ", Title: " + title + ", Author: " + author);
@@ -39,13 +27,4 @@ public class Paper extends Book {
         System.out.println();
     }
 
-    public void returnBook(int userID) {
-        if (isBorrowed) {
-            isBorrowed = false;
-            dueDate = null;
-            System.out.println("Book returned by User ID: " + userID);
-        } else {
-            System.out.println("Book was not borrowed.");
-        }
-    }
 }

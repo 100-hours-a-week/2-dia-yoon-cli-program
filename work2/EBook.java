@@ -14,28 +14,14 @@ public class EBook extends Paper {
         this.downloadLink = downloadLink;
     }
 
-    public void setBookID(int bookID) {
-        this.bookID = bookID;
-    }
-
     public void download() {
         System.out.println("Downloading eBook from: " + downloadLink);
-    }
-
-    @Override
-    public void borrow(int userID) {
-        System.out.println("eBook borrowed by User ID: " + userID);
-        System.out.println("Due Date: " + LocalDate.now() + " ~ " + dueDate);
-    }
-
-    @Override
-    public void returnBook(int userID) {
-        System.out.println("eBook returned by User ID: " + userID);
     }
 
     public void readOnline() {
         System.out.println("Reading eBook online.");
     }
+
     @Override
     public void getDetails() {
         System.out.println("Book ID: " + bookID + ", Title: " + title + ", Author: " + author);
