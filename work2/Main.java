@@ -108,8 +108,8 @@ public class Main {
                         int choice3 = sc.nextInt();
                         switch (choice3) {
                             case 1:
-                                System.out.println("대출하신 도서 목록입니다.\n");
-                                loggedInUser.displayBorrowedBooks();  // 대출 도서 목록 출력
+                                System.out.println("대출하신 도서 목록입니다.");
+                                loggedInUser.checkList(); // 대출 도서 목록 출력
                                 break;
 
                             case 2:
@@ -119,8 +119,8 @@ public class Main {
 
                             case 3:
                                 System.out.println("변경하실 이름을 입력하세요 : ");
-                                String newname = sc.next();
-                                loggedInUser.updateName(newname);
+                                String newName = sc.next();
+                                loggedInUser.updateName(newName);
                                 System.out.println("변경하실 이메일을 입력하세요: ");
                                 String newEmail = sc.next();
                                 loggedInUser.updateEmail(newEmail);
