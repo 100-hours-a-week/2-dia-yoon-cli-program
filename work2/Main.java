@@ -72,21 +72,67 @@ public class Main {
             } else {
                 // 로그인된 상태
                 //System.out.println("로그인된 사용자: " + loggedInUser.getName());
-                System.out.println("1. 책 정보 조회\n2. 책 대여 / 반납 / 다운로드\n3. 책 예약\n4. 관리자 영역\n5. 로그아웃\n6. 종료하기");
+                System.out.println("1. 도서 목록\n2. 도서 대여 / 반납 / 다운로드 / 예약\n3. 개인 페이지\n4. 관리자 영역\n5. 로그아웃\n6. 종료하기");
                 int choice = sc.nextInt();
 
                 switch (choice) {
                     case 1:
+                        System.out.println("도서 목록을 출력합니다. \n");
                         bookManager.displayBooks();
                         break;
 
                     case 2:
-                        System.out.println("책 대여, 반납, 다운로드 기능 구현 예정");
+                        System.out.println("1. 도서 대여\n2. 도서 반납\n3. EBook 다운로드\n4. 도서 예약");
+                        int choice2 = sc.nextInt();
+                        switch (choice2) {
+                            case 1:
+                                System.out.println("대여하실 책의 아이디를 입력하세요: ");
+                                int bookID = sc.nextInt();
+                                bookManager.borrow(bookID, loggedInUser.userID); // 대여 처리
+                                break;
+                            case 2:
+                                System.out.println("반납하실 책의 아이디를 입력하세요: ");
+                                int returnBookID = sc.nextInt();
+                                bookManager.returnBook(returnBookID, loggedInUser.userID); // 반납 처리 (추가 필요)
+                                break;
+                            case 3:
+                                System.out.println("EBook을 다운로드합니다.");
+                                break;
+                            case 4:
+                                System.out.println("예약 구현예정");
+                        }
                         break;
 
                     case 3:
-                        System.out.println("책 예약 기능 구현 예정");
+                        System.out.println("1. 대출 도서 확인\n2. 예약 도서 확인\n3. 개인 정보 변경");
+                        int choice3 = sc.nextInt();
+                        switch (choice3) {
+                            case 1:
+                                System.out.println("대출하신 도서 목록입니다.\n");
+                                loggedInUser.displayBorrowedBooks();  // 대출 도서 목록 출력
+                                break;
+
+                            case 2:
+                                System.out.println("예약하신 도서 목록입니다.\n");
+                                bookManager.displayReservedBooks();  // 예약 도서 목록 출력
+                                break;
+
+                            case 3:
+                                System.out.println("변경하실 이름을 입력하세요 : ");
+                                String newname = sc.next();
+                                loggedInUser.updateName(newname);
+                                System.out.println("변경하실 이메일을 입력하세요: ");
+                                String newEmail = sc.next();
+                                loggedInUser.updateEmail(newEmail);
+                                System.out.println("정보가 변경되었습니다. ");
+                                break;
+
+                            default:
+                                System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+                                break;
+                        }
                         break;
+
 
                     case 4:
                         // 관리자 영역
@@ -128,7 +174,7 @@ public class Main {
                                             // EBook 책 추가
                                             System.out.println("파일 크기(MB) 입력: ");
                                             double fileSize = sc.nextDouble();
-                                            sc.nextLine(); // 버퍼 비우기
+                                            sc.nextLine();
 
                                             System.out.println("다운로드 링크 입력: ");
                                             String downloadLink = sc.nextLine();
@@ -158,7 +204,7 @@ public class Main {
 
                                 // 관리자 메뉴에서 나갔으면 일반 사용자 메뉴로 돌아가기
                                 if (adminChoice == 3) {
-                                    break; // 관리자 메뉴를 빠져나가면 일반 사용자 메뉴로 돌아감
+                                    break;
                                 }
                             }
                         } else {
@@ -175,7 +221,7 @@ public class Main {
 
                     case 6:
                         System.out.println("프로그램을 종료합니다.");
-                        System.exit(0); // 프로그램 종료
+                        System.exit(0);
                         break;
 
                     default:
