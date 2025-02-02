@@ -10,8 +10,9 @@ public class Book {
     protected LocalDate dueDate;
 
 
-    public Book(String title, String author) {
+    public Book(int bookID,String title, String author) {
         this.title = title;
+        this.bookID = bookID;
         this.author = author;
         this.isBorrowed = false;
         this.isReserved = false;

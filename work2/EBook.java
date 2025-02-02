@@ -8,8 +8,8 @@ public class EBook extends Paper {
     public String downloadLink;
     public int EbookID;
 
-    public EBook(String title, String author, String genre, int publishYear, int page, double fileSize, String downloadLink) {
-        super(title, author, genre, publishYear, page);
+    public EBook(int EbookID,String title, String author, String genre, int publishYear, int page, double fileSize, String downloadLink) {
+        super(EbookID,title, author, genre, publishYear, page);
         this.fileSize = fileSize;
         this.downloadLink = downloadLink;
     }

@@ -4,15 +4,8 @@ import java.util.ArrayList;
 
 public class BookManager {
     public ArrayList<Book> books = new ArrayList<>();
-    private int paperBookCounter = 100; // Paper 책 ID 카운트
-    private int eBookCounter = 500; // EBook 책 ID 카운트
 
     public void addBook(Book book) {
-        if (book instanceof Paper) {
-            book.bookID = paperBookCounter++;
-        } else if (book instanceof EBook) {
-            book.bookID = eBookCounter++;
-        }
         books.add(book);
     }
 

@@ -18,10 +18,10 @@ public class Main {
         while (true) {
             if (!loggedIn) {
                 // 로그인 안 된 상태
-                System.out.println("1. 회원가입\n2. 로그인\n7. 종료하기");
+                System.out.println("1. 회원가입\n2. 로그인\n3. 종료하기");
                 int choice = sc.nextInt();
 
-                if (choice == 7) {
+                if (choice == 3) {
                     System.out.println("프로그램을 종료합니다.");
                     break;
                 }
@@ -71,14 +71,13 @@ public class Main {
                 }
             } else {
                 // 로그인된 상태
-                System.out.println("로그인된 사용자: " + loggedInUser.getName());
+                //System.out.println("로그인된 사용자: " + loggedInUser.getName());
                 System.out.println("1. 책 정보 조회\n2. 책 대여 / 반납 / 다운로드\n3. 책 예약\n4. 관리자 영역\n5. 로그아웃\n6. 종료하기");
                 int choice = sc.nextInt();
 
                 switch (choice) {
                     case 1:
                         bookManager.displayBooks();
-
                         break;
 
                     case 2:
@@ -103,7 +102,7 @@ public class Main {
                                     case 1:
                                         System.out.println("책 유형을 선택하세요\n 1. Paper 2. EBook");
                                         int typeChoice = sc.nextInt();
-                                        sc.nextLine(); // 버퍼 비우기
+                                        sc.nextLine();
 
                                         System.out.println("책 제목 입력: ");
                                         String title = sc.nextLine();
@@ -122,7 +121,7 @@ public class Main {
 
                                         if (typeChoice == 1) {
                                             // Paper 책 추가
-                                            Paper paperBook = new Paper(title, author, genre, publishYear, page);
+                                            Paper paperBook = new Paper(paperBookCounter++,title, author, genre, publishYear, page);
                                             bookManager.addBook(paperBook);
                                             System.out.println("Paper 책이 추가되었습니다.");
                                         } else if (typeChoice == 2) {
@@ -134,7 +133,7 @@ public class Main {
                                             System.out.println("다운로드 링크 입력: ");
                                             String downloadLink = sc.nextLine();
 
-                                            EBook eBook = new EBook(title, author, genre, publishYear, page, fileSize, downloadLink);
+                                            EBook eBook = new EBook(eBookCounter++, title, author, genre, publishYear, page, fileSize, downloadLink);
                                             bookManager.addBook(eBook);
                                             System.out.println("EBook 책이 추가되었습니다.");
                                         } else {

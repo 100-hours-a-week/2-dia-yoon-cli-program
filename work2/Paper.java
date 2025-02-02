@@ -9,8 +9,8 @@ public class Paper extends Book {
     public int page;
     public int PaperID;
 
-    public Paper(String title, String author, String genre, int publishYear, int page) {
-        super(title, author);
+    public Paper(int PaperID,String title, String author, String genre, int publishYear, int page) {
+        super(PaperID, title, author);
         this.genre = genre;
         this.publishYear = publishYear;
         this.page = page;
