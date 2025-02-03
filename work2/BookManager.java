@@ -27,7 +27,6 @@ public class BookManager {
     }
 
     // 대출
-
     public void borrow(int bookID, int userID) {
         Book bookToBorrow = null;
         for (Book book : books) {
@@ -94,37 +93,37 @@ public class BookManager {
         }
     }
 
-    // 예약 도서 추가
-    public void reserveBook(int bookID, int userID) {
-        Book bookToReserve = null;
-        for (Book book : books) {
-            if (book.bookID == bookID) {
-                bookToReserve = book;
-                break;
-            }
-        }
-
-        if (bookToReserve == null) {
-            System.out.println("책이 존재하지 않습니다.");
-            return;
-        }
-
-        if (reservedBooks.contains(bookToReserve)) {
-            System.out.println("이미 예약된 책입니다.");
-        } else {
-            reservedBooks.add(bookToReserve);
-            System.out.println("책 아이디 " + bookID + "가 예약되었습니다.");
-        }
-    }
-
-    // 예약 도서 목록 확인
-    public void displayReservedBooks() {
-        if (reservedBooks.isEmpty()) {
-            System.out.println("예약된 도서가 없습니다.");
-        } else {
-            for (Book book : reservedBooks) {
-                book.getDetails();
-            }
-        }
-    }
+//    // 예약 도서 추가
+//    public void reserveBook(int bookID, int userID) {
+//        Book bookToReserve = null;
+//        for (Book book : books) {
+//            if (book.bookID == bookID) {
+//                bookToReserve = book;
+//                break;
+//            }
+//        }
+//
+//        if (bookToReserve == null) {
+//            System.out.println("책이 존재하지 않습니다.");
+//            return;
+//        }
+//
+//        if (reservedBooks.contains(bookToReserve)) {
+//            System.out.println("이미 예약된 책입니다.");
+//        } else {
+//            reservedBooks.add(bookToReserve);
+//            System.out.println("책 아이디 " + bookID + "가 예약되었습니다.");
+//        }
+//    }
+//
+//    // 예약 도서 목록 확인
+//    public void displayReservedBooks() {
+//        if (reservedBooks.isEmpty()) {
+//            System.out.println("예약된 도서가 없습니다.");
+//        } else {
+//            for (Book book : reservedBooks) {
+//                book.getDetails();
+//            }
+//        }
+//    }
 }
