@@ -1,10 +1,7 @@
-import java.time.LocalDate;
-
 public class Paper extends Book {
     public String genre;
     public int publishYear;
     public int page;
-    public int PaperID;
 
     public Paper(int PaperID,String title, String author, String genre, int publishYear, int page) {
         super(PaperID, title, author);
@@ -13,15 +10,9 @@ public class Paper extends Book {
         this.page = page;
     }
 
-    public void setBookID(int bookID) {
-        this.bookID = bookID;
-    }
-
     @Override
     public void getDetails() {
-        System.out.println("BOOK ID: " + bookID + ", 제목: " + title + ", 작가: " + author);
+        super.getDetails();
         System.out.println("장르: " + genre+ ", 출판 연도: " + publishYear+ ", 쪽 수: " + page);
-        System.out.println();
     }
-
 }

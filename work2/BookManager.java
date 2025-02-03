@@ -3,7 +3,6 @@ import java.util.List;
 
 public class BookManager {
     public ArrayList<Book> books = new ArrayList<>();
-    // public ArrayList<Book> reservedBooks = new ArrayList<>();
     private List<User> users;
 
     public BookManager(List<User> users) {
@@ -19,6 +18,7 @@ public class BookManager {
     public void displayBooks() {
         for (Book book : books) {
             book.getDetails();
+            System.out.println();
         }
     }
 
@@ -49,6 +49,7 @@ public class BookManager {
                 }
             }
 
+            // 정상 대출
             user.addBorrowedBook(bookToBorrow);
             bookToBorrow.setBorrowed(true);
             System.out.println("책 대출되었습니다. ");
