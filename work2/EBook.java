@@ -8,6 +8,7 @@ public class EBook extends Paper {
         this.downloadLink = downloadLink;
     }
 
+    // 다운로드 링크 보내기
     public String getDownloadLink() {
         return downloadLink;
     }

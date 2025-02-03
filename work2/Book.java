@@ -18,6 +18,7 @@ public class Book {
     public int getBookID() {
         return bookID;
     }
+    // 대출 여부 확인
     public boolean isBorrowed() {
         return isBorrowed;
     }

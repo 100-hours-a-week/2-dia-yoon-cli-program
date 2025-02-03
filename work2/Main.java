@@ -100,7 +100,7 @@ public class Main {
 
                                 if (book == null) {
                                     System.out.println("존재하지 않는 책입니다.");
-                                } else if (downBookID >= 500) { // EBook 확인
+                                } else if (downBookID >= 500) { // 500번 이상이 EBook
                                     System.out.println("EBook을 다운로드합니다.");
                                     System.out.println("이 책의 다운로드 링크: " + ((EBook) book).getDownloadLink());
                                 } else {

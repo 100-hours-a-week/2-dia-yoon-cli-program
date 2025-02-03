@@ -22,7 +22,7 @@ public class BookManager {
         }
     }
 
-    // 책 제거
+    // 도서 제거
     public void removeBook(int bookID) {
         books.removeIf(book -> book.bookID == bookID);
         System.out.println("책 아이디 " + bookID + " 가 제거되었습니다. ");

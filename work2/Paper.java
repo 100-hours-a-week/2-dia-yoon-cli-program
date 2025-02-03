@@ -13,6 +13,6 @@ public class Paper extends Book {
     @Override
     public void getDetails() {
         super.getDetails();
-        System.out.println("장르: " + genre + ", 출판 연도: " + publishYear + ", 쪽 수: " + page);
+        System.out.println("장르: " + genre + ", 출판 연도: " + publishYear+ ", 쪽 수: " + page);
     }
 }
