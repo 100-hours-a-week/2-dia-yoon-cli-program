@@ -1,5 +1,5 @@
-package work2;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     int userID;
@@ -26,6 +26,7 @@ public class User {
     }
 
     public void checkList() {
+        System.out.println("현재 대출 목록 개수: " + borrowedBooks.size());  // 디버깅용 출력
         if (borrowedBooks.isEmpty()) {
             System.out.println("대출하신 도서가 없습니다.");
         } else {
@@ -35,12 +36,18 @@ public class User {
             }
         }
     }
+
+    // 대여한 책 목록 반환
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
     public void addBorrowedBook(Book book) {
         borrowedBooks.add(book);  // 대출한 책을 목록에 추가
     }
 
-    public void removeBorrowedBook(Book book) {
-        borrowedBooks.remove(book);  // 반납된 책을 목록에서 제거
+    public boolean removeBorrowedBook(Book book) {
+        return borrowedBooks.remove(book);
     }
 
     public void updateName(String newName){

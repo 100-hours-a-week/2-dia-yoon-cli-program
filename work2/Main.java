@@ -1,14 +1,12 @@
-package work2;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        BookManager bookManager = new BookManager();
-
         ArrayList<User> users = new ArrayList<>();
+        BookManager bookManager = new BookManager(users);
+
         int userIdCounter = 1;
         boolean loggedIn = false;  // 로그인 상태 추적 변수
         User loggedInUser = null;  // 로그인한 사용자 객체
@@ -22,7 +20,7 @@ public class Main {
                 int choice = sc.nextInt();
 
                 if (choice == 3) {
-                    System.out.println("프로그램을 종료합니다.");
+                    System.out.println("프로그램을 종료합니다. 안녕히 가세요");
                     break;
                 }
 
@@ -72,17 +70,17 @@ public class Main {
             } else {
                 // 로그인된 상태
                 //System.out.println("로그인된 사용자: " + loggedInUser.getName());
-                System.out.println("1. 도서 목록\n2. 도서 대여 / 반납 / 다운로드 / 예약\n3. 개인 페이지\n4. 관리자 영역\n5. 로그아웃\n6. 종료하기");
+                System.out.println("1. 도서 목록\n2. 도서 대여 / 반납 / 다운로드\n3. 개인 페이지\n4. 관리자 영역\n5. 로그아웃\n6. 종료하기");
                 int choice = sc.nextInt();
 
                 switch (choice) {
                     case 1:
-                        System.out.println("도서 목록을 출력합니다. \n");
+                        System.out.println("전체 도서 목록을 출력합니다. \n");
                         bookManager.displayBooks();
                         break;
 
                     case 2:
-                        System.out.println("1. 도서 대여\n2. 도서 반납\n3. EBook 다운로드\n4. 도서 예약");
+                        System.out.println("1. 도서 대여\n2. 도서 반납\n3. EBook 다운로드\n");
                         int choice2 = sc.nextInt();
                         switch (choice2) {
                             case 1:
@@ -96,15 +94,28 @@ public class Main {
                                 bookManager.returnBook(returnBookID, loggedInUser.userID); // 반납 처리 (추가 필요)
                                 break;
                             case 3:
-                                System.out.println("EBook을 다운로드합니다.");
+                                System.out.println("EBook을 다운로드 하시려면 책 ID를 입력해주세요: ");
+                                int downBookID = sc.nextInt();
+
+                                Book book = bookManager.getBookByID(downBookID); // 책 ID로 책 찾기
+
+                                if (book == null) {
+                                    System.out.println("존재하지 않는 책입니다.");
+                                } else if (downBookID >= 500) { // EBook 확인
+                                    System.out.println("EBook을 다운로드합니다.");
+                                    System.out.println("이 책의 다운로드 링크: " + ((EBook) book).getDownloadLink());
+                                } else {
+                                    System.out.println("ebook만 다운로드가 가능합니다.");
+                                }
                                 break;
-                            case 4:
-                                System.out.println("예약 구현예정");
+                            default:
+                                break;
                         }
+
                         break;
 
                     case 3:
-                        System.out.println("1. 대출 도서 확인\n2. 예약 도서 확인\n3. 개인 정보 변경");
+                        System.out.println("1. 대출 도서 확인\n2. 개인 정보 변경");
                         int choice3 = sc.nextInt();
                         switch (choice3) {
                             case 1:
@@ -113,11 +124,6 @@ public class Main {
                                 break;
 
                             case 2:
-                                System.out.println("예약하신 도서 목록입니다.\n");
-                                bookManager.displayReservedBooks();  // 예약 도서 목록 출력
-                                break;
-
-                            case 3:
                                 System.out.println("변경하실 이름을 입력하세요 : ");
                                 String newName = sc.next();
                                 loggedInUser.updateName(newName);
@@ -220,7 +226,7 @@ public class Main {
                         break;
 
                     case 6:
-                        System.out.println("프로그램을 종료합니다.");
+                        System.out.println("프로그램을 종료합니다. 안녕히 가세요");
                         System.exit(0);
                         break;
 

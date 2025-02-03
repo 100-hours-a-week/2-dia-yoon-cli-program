@@ -1,12 +1,14 @@
-package work2;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookManager {
     public ArrayList<Book> books = new ArrayList<>();
-    public ArrayList<Book> reservedBooks = new ArrayList<>();
+    // public ArrayList<Book> reservedBooks = new ArrayList<>();
     private List<User> users;
+
+    public BookManager(List<User> users) {
+        this.users = users;
+    }
 
     // 책 추가
     public void addBook(Book book) {
@@ -23,107 +25,81 @@ public class BookManager {
     // 책 제거
     public void removeBook(int bookID) {
         books.removeIf(book -> book.bookID == bookID);
-        System.out.println("Book with ID " + bookID + " has been removed.");
+        System.out.println("책 아이디 " + bookID + " 가 제거되었습니다. ");
     }
 
     // 대출
     public void borrow(int bookID, int userID) {
-        Book bookToBorrow = null;
-        for (Book book : books) {
-            if (book.bookID == bookID) {
-                bookToBorrow = book;
-                break;
+        // 대출 처리
+        Book bookToBorrow = findBookByID(bookID);
+        User user = findUserByID(userID);
+
+        if (bookToBorrow != null && user != null) {
+            // 다른 사람이 대여 중인 책
+            if (bookToBorrow.isBorrowed()) {
+                System.out.println("이 책은 다른 사람이 대여 중입니다.");
+                return;
             }
-        }
 
-        if (bookToBorrow == null) {
-            System.out.println("책이 존재하지 않습니다.");
-            return;
-        }
-
-        if (bookToBorrow.isBorrowed) {
-            System.out.println("다른 사용자가 대출 중인 책입니다.");
-        } else {
-            bookToBorrow.isBorrowed = true;
-            bookToBorrow.dueDate = LocalDate.now().plusWeeks(1); // Set due date as 1 week from now
-            System.out.println("책 아이디 " + bookID + "가 유저 아이디 " + userID + "에 의하여 대출되었습니다.");
-            System.out.println("대출 기한: " + bookToBorrow.dueDate);
-
-            // 대출한 책을 해당 사용자에게 추가
-            for (User user : users) {
-                if (user.getUserID() == userID) {
-                    user.addBorrowedBook(bookToBorrow);
-                    break;
+            // 본인이 이미 대여한 책을 다시 대여하려 할 때
+            for (Book borrowedBook : user.getBorrowedBooks()) {
+                if (borrowedBook.getBookID() == bookID) {
+                    System.out.println("이미 대여한 책입니다.");
+                    return;
                 }
             }
+
+            user.addBorrowedBook(bookToBorrow);
+            bookToBorrow.setBorrowed(true);
+            System.out.println("책 대출되었습니다. ");
+        } else {
+            System.out.println("책을 찾을 수 없거나 사용자 정보가 잘못되었습니다.");
         }
     }
 
-
-
-    public void displayBorrowedBooks(int userID) {
+    private Book findBookByID(int bookID) {
         for (Book book : books) {
-            if (book.isBorrowed) {
-                System.out.println("책 아이디: " + book.bookID + ", 제목: " + book.title + ", 대출 기한: " + book.dueDate);
+            if (book.bookID == bookID) {
+                return book;
             }
         }
+        return null;
+    }
+
+    private User findUserByID(int userID) {
+        for (User user : users) {
+            if (user.getUserID() == userID) {
+                return user;
+            }
+        }
+        return null;
     }
 
     // 반납
     public void returnBook(int bookID, int userID) {
-        Book bookToReturn = null;
-        for (Book book : books) {
-            if (book.bookID == bookID) {
-                bookToReturn = book;
-                break;
+        Book bookToReturn = findBookByID(bookID);
+        User user = findUserByID(userID);
+
+        if (bookToReturn != null && user != null) {
+            // 사용자가 대여한 책이 맞는지 확인
+            if (user.removeBorrowedBook(bookToReturn)) {
+                bookToReturn.setBorrowed(false); // 대여 상태를 false로 설정
+                System.out.println("책이 반납되었습니다.");
+            } else {
+                System.out.println("반납할 책을 대여한 기록이 없습니다.");
             }
-        }
-
-        if (bookToReturn == null) {
-            System.out.println("책이 존재하지 않습니다.");
-            return;
-        }
-
-        if (!bookToReturn.isBorrowed) {
-            System.out.println("대출하지 않은 책입니다.");
         } else {
-            bookToReturn.isBorrowed = false;
-            bookToReturn.dueDate = null;
-            System.out.println("책 아이디 " + bookID + "가 유저 아이디 " + userID + " 에 의하여 반납되었습니다.");
+            System.out.println("책을 찾을 수 없거나 사용자 정보가 잘못되었습니다.");
         }
     }
 
-//    // 예약 도서 추가
-//    public void reserveBook(int bookID, int userID) {
-//        Book bookToReserve = null;
-//        for (Book book : books) {
-//            if (book.bookID == bookID) {
-//                bookToReserve = book;
-//                break;
-//            }
-//        }
-//
-//        if (bookToReserve == null) {
-//            System.out.println("책이 존재하지 않습니다.");
-//            return;
-//        }
-//
-//        if (reservedBooks.contains(bookToReserve)) {
-//            System.out.println("이미 예약된 책입니다.");
-//        } else {
-//            reservedBooks.add(bookToReserve);
-//            System.out.println("책 아이디 " + bookID + "가 예약되었습니다.");
-//        }
-//    }
-//
-//    // 예약 도서 목록 확인
-//    public void displayReservedBooks() {
-//        if (reservedBooks.isEmpty()) {
-//            System.out.println("예약된 도서가 없습니다.");
-//        } else {
-//            for (Book book : reservedBooks) {
-//                book.getDetails();
-//            }
-//        }
-//    }
+
+    public Book getBookByID(int bookID) {
+        for (Book book : books) {
+            if (book.getBookID() == bookID) {
+                return book;
+            }
+        }
+        return null;
+    }
 }

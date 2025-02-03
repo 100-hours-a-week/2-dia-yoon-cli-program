@@ -1,4 +1,3 @@
-package work2;
 import java.time.LocalDate;
 
 public class EBook extends Paper {
@@ -11,19 +10,24 @@ public class EBook extends Paper {
         this.fileSize = fileSize;
         this.downloadLink = downloadLink;
     }
+//
+//    public void download() {
+//        System.out.println("Downloading eBook from: " + downloadLink);
+//    }
+//
+//    public void readOnline() {
+//        System.out.println("Reading eBook online.");
+//    }
 
-    public void download() {
-        System.out.println("Downloading eBook from: " + downloadLink);
+    public String getDownloadLink() {
+        return downloadLink;
     }
 
-    public void readOnline() {
-        System.out.println("Reading eBook online.");
-    }
 
     @Override
     public void getDetails() {
-        System.out.println("Book ID: " + bookID + ", Title: " + title + ", Author: " + author);
-        System.out.println("Genre: " + genre+ ", publishYear: " + publishYear+ ", Page: " + page);
+        System.out.println("EBOOK ID: " + bookID + ", 제목: " + title + ", 작가: " + author);
+        System.out.println("장르: " + genre+ ", 출판 연도: " + publishYear+ ", 쪽 수: " + page);
         System.out.println("File Size: " + fileSize+ ", Download Link: " + downloadLink);
         System.out.println();
     }

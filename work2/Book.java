@@ -1,4 +1,3 @@
-package work2;
 import java.time.LocalDate;
 
 public class Book {
@@ -15,15 +14,24 @@ public class Book {
         this.bookID = bookID;
         this.author = author;
         this.isBorrowed = false;
-        this.isReserved = false;
     }
 
     public void getDetails() {
-        System.out.println("Book ID: " + bookID + ", Title: " + title + ", Author: " + author + ", Borrowed: " + isBorrowed + ", Reserved: " + isReserved);
+        System.out.println("책 ID: " + bookID + ", 제목: " + title + ", 작가: " + author + ", 대여 여부: " + isBorrowed);
     }
 
     public void updateInfo(String title, String author) {
         this.title = title;
         this.author = author;
     }
+    public int getBookID() {
+        return bookID;
+    }
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+    public void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
+    }
+
 }

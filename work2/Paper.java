@@ -1,4 +1,3 @@
-package work2;
 import java.time.LocalDate;
 
 public class Paper extends Book {
@@ -20,8 +19,8 @@ public class Paper extends Book {
 
     @Override
     public void getDetails() {
-        System.out.println("Book ID: " + bookID + ", Title: " + title + ", Author: " + author);
-        System.out.println("Genre: " + genre+ ", publishYear: " + publishYear+ ", Page: " + page);
+        System.out.println("BOOK ID: " + bookID + ", 제목: " + title + ", 작가: " + author);
+        System.out.println("장르: " + genre+ ", 출판 연도: " + publishYear+ ", 쪽 수: " + page);
         System.out.println();
     }
 
