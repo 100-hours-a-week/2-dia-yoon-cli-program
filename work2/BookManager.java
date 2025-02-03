@@ -14,7 +14,7 @@ public class BookManager {
         books.add(book);
     }
 
-    // 전체 책 목록 출력
+    // 전체 도서 목록 출력
     public void displayBooks() {
         for (Book book : books) {
             book.getDetails();
@@ -93,7 +93,6 @@ public class BookManager {
             System.out.println("책을 찾을 수 없거나 사용자 정보가 잘못되었습니다.");
         }
     }
-
 
     public Book getBookByID(int bookID) {
         for (Book book : books) {

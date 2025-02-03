@@ -46,6 +46,7 @@ public class User {
         borrowedBooks.add(book);  // 대출한 책을 목록에 추가
     }
 
+    // 대여한 책인지 확인용도
     public boolean removeBorrowedBook(Book book) {
         return borrowedBooks.remove(book);
     }

@@ -4,7 +4,6 @@ public class Book {
     protected String author;
     protected boolean isBorrowed;
 
-
     public Book(int bookID,String title, String author) {
         this.title = title;
         this.bookID = bookID;

@@ -69,7 +69,6 @@ public class Main {
                 }
             } else {
                 // 로그인된 상태
-                //System.out.println("로그인된 사용자: " + loggedInUser.getName());
                 System.out.println("1. 도서 목록\n2. 도서 대여 / 반납 / 다운로드\n3. 개인 페이지\n4. 관리자 영역\n5. 로그아웃\n6. 종료하기");
                 int choice = sc.nextInt();
 

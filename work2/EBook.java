@@ -15,7 +15,7 @@ public class EBook extends Paper {
     @Override
     public void getDetails() {
         super.getDetails();
-        System.out.println("File Size: " + fileSize+ ", Download Link: " + downloadLink);
+        System.out.println("파일 사이즈: " + fileSize+ ", 다운로드 링크: " + downloadLink);
     }
 }
 
