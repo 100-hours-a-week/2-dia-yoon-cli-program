@@ -3,11 +3,13 @@ public class Book {
     protected String title;
     protected String author;
     protected boolean isBorrowed;
+    public String genre;
 
-    public Book(int bookID,String title, String author) {
+    public Book(int bookID,String title, String author,String genre) {
         this.title = title;
         this.bookID = bookID;
         this.author = author;
+        this.genre = genre;
         this.isBorrowed = false;
     }
 
