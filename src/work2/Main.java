@@ -6,6 +6,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ArrayList<User> users = new ArrayList<>();
         BookManager bookManager = new BookManager(users);
+        UserManager userManager = new UserManager(users, bookManager.getBooks());
 
         int userIdCounter = 1;
         boolean loggedIn = false;  // 로그인 상태 추적 변수
@@ -163,18 +164,18 @@ public class Main {
                             case 1:
                                 System.out.println("대여하실 책의 아이디를 입력하세요: ");
                                 int bookID = sc.nextInt();
-                                bookManager.borrow(bookID, loggedInUser.userID); // 대여 처리
+                                userManager.borrow(bookID, loggedInUser.userID); // 대여 처리
                                 break;
                             case 2:
                                 System.out.println("반납하실 책의 아이디를 입력하세요: ");
                                 int returnBookID = sc.nextInt();
-                                bookManager.returnBook(returnBookID, loggedInUser.userID); // 반납 처리 (추가 필요)
+                                userManager.returnBook(returnBookID, loggedInUser.userID); // 반납 처리 (추가 필요)
                                 break;
                             case 3:
                                 System.out.println("EBook을 다운로드 하시려면 책 ID를 입력해주세요: ");
                                 int downBookID = sc.nextInt();
 
-                                Book book = bookManager.getBookByID(downBookID); // 책 ID로 책 찾기
+                                Book book = userManager.getBookByID(downBookID); // 책 ID로 책 찾기
 
                                 if (book == null) {
                                     System.out.println("존재하지 않는 책입니다.");
