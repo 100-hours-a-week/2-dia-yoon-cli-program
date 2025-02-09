@@ -3,12 +3,17 @@ public class Book {
     protected String title;
     protected String author;
     protected boolean isBorrowed;
+    public String genre;
 
-    public Book(int bookID,String title, String author) {
+    public Book(String title, String author, String genre) {
         this.title = title;
-        this.bookID = bookID;
         this.author = author;
+        this.genre = genre;
         this.isBorrowed = false;
+    }
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 
     public void getDetails() {
@@ -18,12 +23,12 @@ public class Book {
     public int getBookID() {
         return bookID;
     }
-    // 대출 여부 확인
+
     public boolean isBorrowed() {
         return isBorrowed;
     }
+
     public void setBorrowed(boolean borrowed) {
         isBorrowed = borrowed;
     }
-
 }
